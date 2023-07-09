@@ -1,0 +1,74 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        // {
+        //     "name": "rknn_api_test_debug",
+        //     "type": "cppdbg",
+        //     "request": "launch",
+        //     "program": "/home/lc/projects_rk/rknn_compiler/tmp_model_debug/rknn_api_test",
+        //     "args": [
+        //         // "${workspaceFolder}/dumps/lenet/lenet.rknn",
+        //         // "${workspaceFolder}/models/lenet/2.jpg",
+        //         // "${workspaceFolder}/dumps/mobilenet_v1/tmp.onnx.rknn",    //mobilenet_v1
+        //         // "${workspaceFolder}/dumps/mobilenet_v1_v2/mobilenet_v1.rknn",   //mobilenet_v1
+        //         // "${workspaceFolder}/dumps/yolov5/yolov3_416.rknn",        //mobilenet_v1
+        //         // "${workspaceFolder}/models/mobilenet_v1/dog_224x224.jpg",
+        //         "/home/lc/projects_rk/rknn_compiler/tmp_model_debug/swin-tiny-patch4-window7-224.rknn", // model path
+        //         "/home/lc/projects_rk/rknn_compiler/tmp_model_debug/img_256x256_test.png", //input path
+        //         "1"
+        //     ],
+        //     "stopAtEntry": false,
+        //     "cwd": "${workspaceFolder}",
+        //     "environment": [
+        //         {
+        //             "name": "RKNN_LOG_LEVEL",
+        //             "value": "4"
+        //         },
+        //         {
+        //             "name": "LD_LIBRARY_PATH",
+        //             "value": "/home/lc/projects_rk/rknn_compiler/tmp_model_debug/libs:${LD_LIBRARY_PATH}"
+        //         }
+        //     ],
+        //     "externalConsole": false,
+        //     "MIMode": "gdb",
+        //     "setupCommands": [
+        //         {
+        //             "description": "Enable pretty-printing for gdb",
+        //             "text": "-enable-pretty-printing",
+        //             "ignoreFailures": true
+        //         }
+        //     ]
+        //     // "sourceFileMap": {
+        //     //     "/build/glibc-S9d2JN": "/usr/src/glibc"
+        //     // }
+        // },
+        { // 可以有多个launch 这是第三个launch
+            "name": "android gdb server debug", //该例子为gdb server远程调试例子
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/home/lc/projects_rk/rknn_compiler/build_rt_android_ndk_arm64-v8a/install/bin/rknn_api_test",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            // 使用gdb server 时 此处需要填上工具链中的gdb 可以在命令行中直接执行该程序来确认是否是可用的gdb
+            "miDebuggerPath": "/home/lc/ndk/android-ndk-r23b/prebuilt/linux-x86_64/bin/gdb",
+            // 此处填上目标机子的ip地址 以及 所设置的gdb server通信端口
+            // 本地ip地址为 127.0.0.1
+            "miDebuggerServerAddress": "127.0.0.1:14399",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": false
+                }
+            ]
+            // 注意 此处删去了 preLaunchTask, 可以自行添加 编译推送到板子上的脚本 也可以手动编译后拷贝
+        }
+    ]
+}
